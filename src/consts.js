@@ -7,3 +7,5 @@ export const Routes = {
   CHAT: CHAT_ROUTE,
   LOGIN: LOGIN_ROUTE
 };
+
+export const ENTER_KEYCODE = 13;
