@@ -92,7 +92,6 @@ module.exports = {
     alias: { // Сокращения для путей
       '@components': path.resolve(__dirname, `./src/components`),
       '@styles': path.resolve(__dirname, `./src/styles`),
-      '@fonts': path.resolve(__dirname, `./src/assets/fonts`),
       '@': path.resolve(__dirname, `./src`)
     }
   },
@@ -154,17 +153,6 @@ module.exports = {
           loader: `file-loader`,
           options: {
             outputPath: './assets/img'
-          }
-        }
-      },
-
-      // ? Обработка шрифтов
-      {
-        test: /\.(ttf|woff|woff2|eot)$/,
-        use: {
-          loader: `file-loader`,
-          options: {
-            outputPath: `./assets/fonts`
           }
         }
       },
