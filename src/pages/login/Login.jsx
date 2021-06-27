@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
-import Navbar from '@components/navbar/Navbar';
-import {Context} from '../..';
 import firebase from 'firebase/app';
+
+import {Context} from '../..';
 import './login.less';
 
 
@@ -10,15 +10,15 @@ const Login = () => {
 
   const loginClickHandler = async () => {
     const provider = new firebase.auth.GoogleAuthProvider();
+    // eslint-disable-next-line no-unused-vars
     const {user} = await auth.signInWithPopup(provider);
   };
 
   return (
     <>
-      <Navbar />
-      <section className="login">
-        <button className="login__btn btn" onClick={loginClickHandler}>Войти через Google</button>
-      </section>
+      <div className="login">
+        <button className="login__btn btn" onClick={loginClickHandler}><span>Войти через Google</span></button>
+      </div>
     </>
   );
 };
