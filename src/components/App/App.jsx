@@ -1,6 +1,8 @@
 import React, {useContext} from 'react';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 
+import './app.less';
+
 import Navbar from '@components/navbar/Navbar';
 import Login from '../../pages/login/Login';
 import Chat from '../../pages/chat/Chat';
@@ -14,8 +16,6 @@ import {Context} from '../..';
 
 import {Routes} from '../../consts';
 
-
-import './app.less';
 
 const App = () => {
   const {auth} = useContext(Context);
