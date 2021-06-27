@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 
 import Login from '../../pages/login/Login';
@@ -7,13 +7,19 @@ import Main from '../../pages/main/Main';
 import Page404 from '../../pages/page-404/Page-404';
 import PrivateRoute from '../hocs/private-route/Private-route';
 
+import {useAuthState} from 'react-firebase-hooks/auth';
+import {Context} from '../..';
+
 import {Routes} from '../../consts';
 
 
 import './app.less';
 
 const App = () => {
-  const isLogined = false;
+  const {auth} = useContext(Context);
+  const [userData] = useAuthState(auth);
+  const isLogined = Boolean(userData);
+
   return (
     <BrowserRouter>
 
