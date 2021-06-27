@@ -1,0 +1,89 @@
+@import "@styles/_vars";
+
+@padding-top-bottom: 40px;
+@textfield-height: 40px;
+
+.chat {
+  justify-self: center;
+  padding: 20px 0;
+  width: 70%;
+
+  &__window {
+    justify-self: center;
+    overflow-y: auto;
+    border: 2px solid @primary-color;
+    padding: 0 20px 20px;
+    height: calc(100vh - @padding-top-bottom - @navbar-height - @textfield-height);
+  }
+
+  &__list {
+    display: grid;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__item {
+    justify-self: end;
+    list-style: none;
+    margin-top: 20px;
+    width: 45%;
+    .message {
+      border: 2px solid @primary-color;
+    }
+    &--self-message {
+      justify-self: start;
+      grid-column: 1/2;
+
+      .message {
+        border: 2px solid @secondary-color;
+      }
+    }
+  }
+
+  &__textfield {
+    position: relative;
+
+    text-align: center;
+
+    textarea {
+      border: 2px solid @text-color;
+      border-top: none;
+      padding: 10px 0 10px 14px;
+      width: 100%;
+      height: @textfield-height;
+      resize: none;
+
+      &::placeholder {
+        color: @placeholder-color;
+        opacity: 1;
+      }
+
+      &:hover,
+      &:focus {
+        outline: none;
+        border-color: @secondary-color;
+      }
+    }
+
+    button {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      border: none;
+      width: 30px;
+      height: 30px;
+      color: transparent;
+      background-image: url("@/assets/img/arrow.svg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-color: transparent;
+      transform: translate(0, -50%);
+      cursor: pointer;
+
+      &:disabled {
+        opacity: .5;
+      }
+    }
+
+  }
+}

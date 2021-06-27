@@ -1,55 +1,87 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useRef, useState} from 'react';
 import {useAuthState} from 'react-firebase-hooks/auth';
 import {useCollectionData} from 'react-firebase-hooks/firestore';
 
-import firebase from 'firebase/app';
+import {nanoid} from 'nanoid';
+import {submitMessage} from './../../api';
+
+import './chat.less';
 
 import Loader from '@components/loader/Loader';
+import Message from '@components/message/Message';
 
+import {ENTER_KEYCODE} from '../../consts';
 import {Context} from '../..';
-import './chat.less';
 
 const Chat = () => {
   const {auth, firestore} = useContext(Context);
   const [userData] = useAuthState(auth);
-  const [message, setMessage] = useState(``);
+
+  const inputRef = useRef();
+  const [disabledStatus, setDisabledStatus] = useState(true);
+
   const [messages, loading] = useCollectionData(
       firestore.collection(`messages`).orderBy(`createdAt`)
   );
 
-  const textfieldChangeHandler = (evt) => {
-    setMessage(evt.target.value);
+  const submitClickHandler = () => {
+    const messageId = nanoid();
+    submitMessage(userData, inputRef.current.value, messageId, firestore);
+    inputRef.current.value = ``;
   };
 
-  const submitMessage = async () => {
-    firestore.collection(`messages`).add({
-      userId: userData.uid,
-      userName: userData.displayName,
-      userAvatar: userData.photoURL,
-      userMessage: message,
-      createdAt: firebase.firestore.FieldValue.serverTimestamp()
-    });
-    setMessage(``);
+  const inputKeyUpHandler = (evt) => {
+    const str = inputRef.current.value.replace(/\s/g, ``);
+
+    if (evt.keyCode === ENTER_KEYCODE && str) {
+      const messageId = nanoid();
+
+      submitMessage(userData, inputRef.current.value, messageId, firestore);
+      inputRef.current.value = ``;
+    }
+  };
+
+  const inputChangeHandler = () => {
+    const str = inputRef.current.value.replace(/\s/g, ``);
+
+    if (str) {
+      setDisabledStatus(false);
+    } else {
+      setDisabledStatus(true);
+    }
   };
 
   return (
     loading ? <Loader />
       :
-      <section className="Chat">
+      <section className="chat">
         <div className="chat__window">
-          {messages.map((messageData) => {
-            return (
-              <div>
-                <img src={messageData.userAvatar} alt="" />
-                <p>{messageData.userName}</p>
-                <p>{messageData.userMessage}</p>
-              </div>
-            );
-          })}
+          <ul className="chat__list">
 
+            {
+              messages.map((data) => {
+
+                const extraClass = userData.uid === data.userId ? `chat__item--self-message` : ``;
+
+                return (
+                  <li key={data.messageId} className={`chat__item ${extraClass}`}>
+                    <Message
+                      avatar={data.userAvatar}
+                      name={data.userName}
+                      message={data.userMessage}/>
+                  </li>
+                );
+              })
+            }
+
+          </ul>
         </div>
-        <input type="textarea" value={message} onChange={textfieldChangeHandler}/>
-        <button onClick={submitMessage}>Ок</button>
+
+        <div className="chat__textfield">
+          <textarea type="text" placeholder="Введите сообщение" ref={inputRef} onKeyUp={inputKeyUpHandler} onChange={inputChangeHandler}/>
+          <button onClick={submitClickHandler} disabled={disabledStatus}>Ввод</button>
+        </div>
+
       </section>
   );
 };
