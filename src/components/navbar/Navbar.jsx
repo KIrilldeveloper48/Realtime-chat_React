@@ -16,7 +16,6 @@ const Navbar = () => {
   const isLogined = Boolean(userData);
 
   const logoutClickHandler = () => {
-
     auth.signOut();
   };
 
@@ -25,9 +24,9 @@ const Navbar = () => {
       <img className="navbar__logo" src={Logo} alt="Логотип" />
       {
         isLogined ?
-          <button className="navbar__logout btn" onClick={logoutClickHandler}>Выйти</button>
+          <button className="navbar__logout btn" onClick={logoutClickHandler}><span>Выйти</span></button>
           :
-          <NavLink to={Routes.LOGIN} className="navbar__login btn">Логин</NavLink>
+          <NavLink to={Routes.LOGIN} className="navbar__login btn"><span>Войти</span></NavLink>
       }
     </nav>
   );

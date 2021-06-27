@@ -1,0 +1,20 @@
+@import "@styles/_vars";
+
+.navbar {
+  display: grid;
+  align-items: center;
+  border-bottom: 2px solid @primary-color;
+  padding: 10px 40px;
+  height: @navbar-height;
+
+  &__logo {
+    justify-self: start;
+    grid-row: 1/2;
+    width: 40px;
+  }
+
+  .btn {
+    justify-self: end;
+    grid-row: 1/2;
+  }
+}
