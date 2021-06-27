@@ -1,0 +1,53 @@
+@import "@styles/_vars";
+
+@btn-border: 2px;
+
+.btn {
+  position: relative;
+  display: inline-block;
+  border: none;
+  padding: 1em 2.5em;
+  font-weight: 700;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  color: @primary-color;
+  background-image: @primary-gradient;
+  cursor: pointer;
+
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: calc(100% - @btn-border * 2);
+    height: calc(100% - @btn-border * 2);
+    background: #fff;
+    transform: translate(-50%, -50%);
+  }
+
+  span {
+    position: relative;
+    z-index: 1;
+    color: @primary-color;
+  }
+
+  &:visited {
+    color: inherit;
+  }
+
+  &:hover {
+    span {
+      color: #fff;
+    }
+  }
+
+  &:hover::after {
+    background: @primary-gradient;
+  }
+
+  &:active {
+    opacity: .5;
+  }
+}
