@@ -1,11 +1,14 @@
-import 'normalize.css';
-import React, {createContext} from 'react';
-import ReactDOM from 'react-dom';
 import App from '@components/App/App';
 import firebase from 'firebase/app';
-import 'firebase/firestore';
-import 'firebase/auth';
 
+import 'firebase/auth';
+import 'firebase/firestore';
+import 'normalize.css';
+
+import React, {createContext} from 'react';
+import ReactDOM from 'react-dom';
+
+/** Инциализация firebase */
 firebase.initializeApp(
     {
       apiKey: `AIzaSyC-lDQtlA3zFgCGb9iQwBRsNsuYADsKfgE`,
@@ -17,10 +20,29 @@ firebase.initializeApp(
     }
 );
 
-export const Context = createContext(null);
 
+/**
+ * Объект firebase для авторизации пользователей
+*/
 const auth = firebase.auth();
+
+/**
+ * Объект firebase для доступа к хранилищу
+*/
 const firestore = firebase.firestore();
+
+/**
+ * @typedef func
+ * @property {Object} firebase
+ * @property {Object} stauthatus
+ * @property {Object} firestore
+ */
+export const Context = createContext({
+  firebase,
+  auth,
+  firestore
+});
+
 
 ReactDOM.render(
     <Context.Provider value={{
