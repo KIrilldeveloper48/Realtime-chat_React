@@ -50,4 +50,16 @@
   &:active {
     opacity: .5;
   }
+
+  &:disabled::after {
+    background: @primary-gradient;
+  }
+
+  &:disabled {
+    opacity: .5;
+
+    span {
+      color: #fff;
+    }
+  }
 }
