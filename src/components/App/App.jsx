@@ -1,22 +1,24 @@
-import React, {useContext} from 'react';
-import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import PrivateRoute from '@components/hocs/private-route/Private-route';
+import Loader from '@components/loader/Loader';
+import Navbar from '@components/navbar/Navbar';
+import Chat from '@pages/chat/Chat';
+import Login from '@pages/login/Login.jsx';
+import Main from '@pages/main/Main';
+import Page404 from '@pages/page-404/Page-404';
 
+import React, {useContext} from 'react';
+import {useAuthState} from 'react-firebase-hooks/auth';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
+
+import {Context} from '../..';
+import {Routes} from '../../consts';
 import './app.less';
 
-import Navbar from '@components/navbar/Navbar';
-import Login from '../../pages/login/Login';
-import Chat from '../../pages/chat/Chat';
-import Main from '../../pages/main/Main';
-import Page404 from '../../pages/page-404/Page-404';
-import PrivateRoute from '../hocs/private-route/Private-route';
-import Loader from '@components/loader/Loader';
-
-import {useAuthState} from 'react-firebase-hooks/auth';
-import {Context} from '../..';
-
-import {Routes} from '../../consts';
-
-
+/**
+ * Точка входа в приложение
+ * @component
+ * @return {func}
+ */
 const App = () => {
   const {auth} = useContext(Context);
   const [userData, loadingStatus] = useAuthState(auth);
@@ -34,7 +36,7 @@ const App = () => {
             <Switch>
 
               <Route exact path={Routes.MAIN}>
-                <Main />
+                <Main isLogined={isLogined}/>
               </Route>
 
               <PrivateRoute exact
