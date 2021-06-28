@@ -12,7 +12,6 @@ Thumbs.db
 node_modules/
 
 # Бандлы
-public/bundle.js
-public/bundle.js.map
+public/
 
 covarage/
