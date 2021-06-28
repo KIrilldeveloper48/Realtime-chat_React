@@ -82,7 +82,7 @@ module.exports = {
   //* Как и куда складывать
   output: {
     filename: `js/[name].[contenthash].js`, // Название итогового файла js
-    path: path.resolve(__dirname, `dist`),
+    path: path.resolve(__dirname, `public`),
     publicPath: publicPath
   },
 
@@ -91,6 +91,7 @@ module.exports = {
     extensions: [`.js`, `.jsx`, `.json`, `.png`, `.jpg`, `.svg`], // Какие расширения нужно понимать по умолчанию, чтобы их можно было не указывать при импорте
     alias: { // Сокращения для путей
       '@components': path.resolve(__dirname, `./src/components`),
+      '@pages': path.resolve(__dirname, `./src/pages`),
       '@styles': path.resolve(__dirname, `./src/styles`),
       '@': path.resolve(__dirname, `./src`)
     }
@@ -106,7 +107,7 @@ module.exports = {
   },
 
   //*  Нужны для конфигурирования выходных данных
-  devtool: isDev ? `source-map` : ``, // Позволяет корректно просмтаривать исходный код в интрументах разработчика
+  // devtool: isDev ? `source-map` : ``, // Позволяет корректно просмтаривать исходный код в интрументах разработчика
 
   //* Список всех плагинов. Плагины позволяют расширить функционал webpack
   plugins: [
@@ -119,7 +120,7 @@ module.exports = {
       }
     }),
 
-    // ? Очищает папку dist
+    // ? Очищает папку public
     new CleanWebpackPlugin(),
 
 
