@@ -15,6 +15,9 @@
 <p align="center">
 <a href="https://kirilldeveloper48.github.io/Realtime-chat_React/docs/Chat.html">Ссылка на документацию JSDOC</a>
 </p>
+<p align="center">
+<a href="https://realtime-chat-af52c.web.app">Демо</a>
+</p>
 
 ---
 <p align="center">
