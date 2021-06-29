@@ -8,8 +8,13 @@
 
 </p>
 
+<p align="center">
 Тестовое задание для компании WomanUP
-<a href="https://kirilldeveloper48.github.io/Realtime-chat_React/docs/Chat.html">Ссылка на документацию</a>
+</p>
+
+<p align="center">
+<a href="https://kirilldeveloper48.github.io/Realtime-chat_React/docs/Chat.html">Ссылка на документацию JSDOC</a>
+</p>
 
 ---
 <p align="center">
