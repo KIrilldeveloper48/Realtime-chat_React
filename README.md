@@ -12,8 +12,7 @@
 
 ---
 <p align="center">
-<img src="
-https://i.ibb.co/zFj68kG/2021-06-29-15-05-48-963.gif" width="80%">
+<img src="https://i.ibb.co/zFj68kG/2021-06-29-15-05-48-963.gif" width="80%">
 </p>
 
 # Как пользоваться
