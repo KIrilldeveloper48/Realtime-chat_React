@@ -9,6 +9,7 @@
 </p>
 
 Тестовое задание для компании WomanUP
+<a href="https://kirilldeveloper48.github.io/Realtime-chat_React/docs/Chat.html">Ссылка на документацию</a>
 
 ---
 <p align="center">
