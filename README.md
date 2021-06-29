@@ -28,7 +28,7 @@
 
 * React для фронта
 * PropTypes для валидации пропсов
-* Firebase для бэка
+* Firebase для бэка и авторизации через google
 * Webpack для сборки
 * JSDOC и Better-docs для генерации документации
 
